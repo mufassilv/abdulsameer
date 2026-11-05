@@ -13,7 +13,40 @@ export default function Pricing() {
 
       <Reveal>
         <div className="card overflow-hidden">
-          <table className="w-full text-sm">
+          {/* phones: stacked work packages */}
+          <div className="md:hidden print:hidden">
+            <div className="flex items-center justify-between bg-surface px-4 py-3 text-xs font-semibold uppercase tracking-wider text-muted">
+              <span>Work package</span><span>Amount (₹)</span>
+            </div>
+            <ul className="divide-y divide-line">
+              {priceLines.map((l, i) => (
+                <li key={l.item} className="flex gap-3 px-4 py-4">
+                  <span className="mt-0.5 font-mono text-xs text-muted">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="font-semibold leading-snug">{l.item}</p>
+                      <p className="shrink-0 font-mono font-semibold">{l.amount.toLocaleString('en-IN')}</p>
+                    </div>
+                    <p className="mt-1 text-xs leading-relaxed text-muted">{l.includes}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="flex items-center justify-between gap-3 border-t-2 border-navy bg-surface px-4 py-3">
+              <span className="text-sm font-semibold">Release 1 total (excl. GST)</span>
+              <span className="font-mono text-lg font-bold whitespace-nowrap">{inr(total)}</span>
+            </div>
+            <div className="flex items-center justify-between gap-3 px-4 py-2 text-sm text-ink-soft">
+              <span>GST @ {meta.gstPercent}%</span>
+              <span className="font-mono whitespace-nowrap">{inr(gst)}</span>
+            </div>
+            <div className="flex items-center justify-between gap-3 bg-navy px-4 py-3 text-white">
+              <span className="text-sm font-semibold">Total payable</span>
+              <span className="font-mono text-lg font-bold whitespace-nowrap">{inr(total + gst)}</span>
+            </div>
+          </div>
+          {/* tablet and up: table */}
+          <table className="hidden w-full text-sm md:table print:table">
             <thead>
               <tr className="bg-surface text-left text-xs uppercase tracking-wider text-muted">
                 <th className="px-5 py-3 font-semibold">#</th>

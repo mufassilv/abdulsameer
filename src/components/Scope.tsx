@@ -70,7 +70,7 @@ export default function Scope() {
                       className="card group w-full cursor-pointer p-5 text-left transition-shadow duration-200 hover:shadow-(--shadow-lift)">
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-xs font-semibold text-brand">{r.id}</span>
+                          <span className="shrink-0 whitespace-nowrap font-mono text-xs font-semibold text-brand">{r.id}</span>
                           <span className="font-semibold">{r.title}</span>
                         </div>
                         <ChevronDown className={`no-print h-4 w-4 shrink-0 text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />

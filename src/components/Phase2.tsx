@@ -19,18 +19,18 @@ export default function Phase2() {
 
       {groups.map((g) => (
         <div key={g} className="mt-12">
-          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-400">
-            {icon[g]} {g}
-            {g === 'AI & content studio' && <span className="ml-1 normal-case tracking-normal text-slate-500">· capabilities we already run in production, highlighted for you</span>}
-            {g === 'Our suggestions' && <span className="ml-1 normal-case tracking-normal text-slate-500">· optional ideas from our side</span>}
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <span className="inline-flex items-center gap-2">{icon[g]} {g}</span>
+            {g === 'AI & content studio' && <span className="basis-full normal-case tracking-normal text-slate-500 sm:basis-auto">Capabilities we already run in production, highlighted for you</span>}
+            {g === 'Our suggestions' && <span className="basis-full normal-case tracking-normal text-slate-500 sm:basis-auto">Optional ideas from our side</span>}
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {phase2.filter((p) => p.group === g).map((p, i) => (
               <Reveal key={p.title} delay={Math.min(i, 5) * 0.04}>
                 <div className={`h-full rounded-2xl border p-5 transition-colors duration-200 ${g === 'AI & content studio' ? 'border-amber-300/30 bg-gradient-to-br from-amber-300/10 to-white/5 hover:border-amber-300/60' : 'border-white/10 bg-white/5 hover:border-teal-300/40 hover:bg-white/10'}`}>
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-semibold">{p.title}</h3>
-                    <Pill tone={p.effort === 'L' ? 'accent' : 'brand'}>{effortLabel[p.effort]}</Pill>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                    <h3 className="font-semibold leading-snug">{p.title}</h3>
+                    <div className="shrink-0 self-start"><Pill tone={p.effort === 'L' ? 'accent' : 'brand'}><span className="whitespace-nowrap">{effortLabel[p.effort]}</span></Pill></div>
                   </div>
                   <p className="mt-2 text-sm text-slate-300">{p.value}</p>
                 </div>

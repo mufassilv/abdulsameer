@@ -79,13 +79,27 @@ export default function Solution() {
             <h3 className="text-xl font-bold">Roles & access matrix</h3>
             <p className="text-sm text-ink-soft">Final permissions are confirmed in Discovery and remain editable by the Super Admin.</p>
           </div>
-          <div className="flex gap-4 text-xs text-ink-soft">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink-soft">
             <span className="inline-flex items-center gap-1.5"><Level v={2} /> Full / all centres</span>
             <span className="inline-flex items-center gap-1.5"><Level v={1} /> Own centre / own records</span>
             <span className="inline-flex items-center gap-1.5"><Level v={0} /> None</span>
           </div>
         </div>
-        <div className="mt-4 overflow-x-auto rounded-2xl border border-line bg-paper">
+        {/* phones: one card per area */}
+        <div className="mt-4 grid gap-3 md:hidden print:hidden">
+          {permissionMatrix.map((row) => (
+            <div key={row.area} className="card p-4">
+              <p className="font-semibold">{row.area}</p>
+              <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2">
+                {roles.map((r) => (
+                  <li key={r} className="flex items-center gap-2 text-xs text-ink-soft"><Level v={row.levels[r]} /><span className="leading-tight">{r}</span></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        {/* tablet and up: full table */}
+        <div className="mt-4 hidden overflow-x-auto rounded-2xl border border-line bg-paper md:block print:block">
           <table className="w-full min-w-[720px] text-sm">
             <thead>
               <tr className="bg-surface text-left text-xs uppercase tracking-wider text-muted">

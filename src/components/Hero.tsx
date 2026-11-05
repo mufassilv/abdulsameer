@@ -40,18 +40,18 @@ export default function Hero() {
           {meta.subtitle}. One secure platform for student learning, franchise operations and head-office oversight, on UAT by <strong className="font-semibold text-white">{meta.uatRelease}</strong> and live by <strong className="font-semibold text-white">{meta.goLive}</strong>.
         </motion.p>
 
-        <motion.div {...fade(0.24)} className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div {...fade(0.24)} className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {[
             { icon: CalendarCheck, label: 'Go-live target', value: meta.goLive },
             { icon: Clock3, label: 'Delivery window', value: `${meta.weeksToGoLive} weeks from kickoff` },
             { icon: IndianRupee, label: 'Release 1 investment', value: `${lakh(total)} + GST` },
             { icon: ShieldCheck, label: 'Included support', value: '90 days hypercare' },
           ].map(({ icon: Icon, label, value }) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+            <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm sm:p-4">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-slate-400">
-                <Icon className="h-4 w-4 text-teal-300" /> {label}
+                <Icon className="h-4 w-4 shrink-0 text-teal-300" /> <span className="leading-tight">{label}</span>
               </div>
-              <p className="mt-2 font-display text-xl font-bold">{value}</p>
+              <p className="mt-2 font-display text-lg font-bold leading-tight sm:text-xl">{value}</p>
             </div>
           ))}
         </motion.div>
